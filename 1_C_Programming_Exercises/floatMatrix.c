@@ -48,8 +48,9 @@ int main(int argc, char* argv[])
     printf("Transpose of A: \n");
     Transpose(ppA, ppC, 2, 2);
     PrintMatrix(ppC, 2, 2);
-    // printf("Multiply A and B: \n");
-    // MatrixMultiply(ppA, ppB, ppC, 2, 2, 2);
+    printf("Multiply A and B: \n");
+    MatrixMultiply(ppA, ppB, ppD, 2, 2, 2);
+    PrintMatrix(ppD, 2, 2);
 
 }
 
@@ -111,5 +112,17 @@ float Transpose(float** A, float** B, int m, int n)
 
 void MatrixMultiply(float** A, float** B, float** C, int m, int n, int p){
     // Will update after assignment 1 due
+    for (int ci = 0; ci < p; ci += 1)
+    {
+        for (int cj = 0; cj < m; cj += 1)
+        {
+            float sum = 0;
+            for (int i = 0; i < n; i += 1) 
+            {
+                sum += A[ci][i] * B[i][cj];
+            }
+            C[ci][cj] = sum;
+        }
+    }
     return;
 }
