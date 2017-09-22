@@ -8,7 +8,6 @@ void PrintMatrix(float** A, int m, int n);
 float LargestElement(float** A, int m, int n);
 int IsDiagonal(float** A, int n);
 float Transpose(float** A, float** B, int m, int n);
-// assignment 1
 void MatrixMultiply(float** A, float** B, float** C, int m, int n, int p);
 
 int main(int argc, char* argv[])
@@ -110,8 +109,8 @@ float Transpose(float** A, float** B, int m, int n)
     return 0;
 }
 
-void MatrixMultiply(float** A, float** B, float** C, int m, int n, int p){
-    // Will update after assignment 1 due
+void MatrixMultiply(float** A, float** B, float** C, int m, int n, int p)
+{
     for (int ci = 0; ci < p; ci += 1)
     {
         for (int cj = 0; cj < m; cj += 1)
