@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <mpi.h>
+
 int main(int argc, char* argv[])
 {
   int procid, numprocs;
@@ -18,5 +19,6 @@ int main(int argc, char* argv[])
   
   // shut down MPI
   MPI_Finalize();
+
   return 0;
 }
