@@ -1,0 +1,53 @@
+/* Notes:
+
+1) Store 2-D array as 2-D array.
+    In C, A[x] is identical to *(A+x)
+    Define a 2-D array as:
+        int A[2][3];
+    The computer will store the array as below:
+
+        | 0 1 2 3 | 0 1 2 3 | 0 1 2 3 | 0 1 2 3 | 0 1 2 3 | 0 1 2 3 |
+    Byte| _ _ _ _ | _ _ _ _ | _ _ _ _ | _ _ _ _ | _ _ _ _ | _ _ _ _ |
+    Slot|   #11   |   #12   |   #13   |   #14   |   #15   |   #16   |
+        ^
+        p  <--- defined by int** p = A; refer to line #21 a).
+
+    6 integers take 24 bytes.
+    Assume A is a zero matrix
+    A[0][0] is a pointer to the first element of A, located at #11.
+    A[0] is a pointer to an array of int, located at #11.
+    A is also located at #11.
+    If we use [] twice:
+    A[0][0] will return the correcct value, the first element of A.
+    suppose we define a pointer
+        int** p = A;
+    We have p = #11.
+    Computer doesn't know the address of second element (A[1]).
+    So we cannot call p[0][0]
+    However, if we call by something like A[1][2], computer knows the 
+    numbers of column and row. So computer can compute the address you
+    want. Call A[1] will return #14.
+
+    How to use a pointer to pass a 2-D array to a function?
+    Solution1:
+        int *pA[2] = {A[0], A[1]};
+        A[0], A[1] are pointers. 
+        int **ppA = pA;
+        function DoSthToMatrix(int **M, ...);
+        call by DoSthToMatrix(ppa, ...);
+    Solution2:
+        Use dynamic memory allocation to create matrices.
+        malloc() from <stdlib.h>
+        int** A = (int**)malloc(2*sizeof(int*));
+        int* A[0] = (int*)malloc(3*sizeof(int));
+        int* A[1] = (int*)malloc(3*sizeof(int));
+        free(A[0]);
+        free(A[1]);
+        free(A);
+        Created a pointer A to a 2-D array.
+
+2) Store as 1-D Array.
+    {A00, A01, A02, A10, A11, A12}
+    A[i][j] is A[i * n + j]
+
+*/
